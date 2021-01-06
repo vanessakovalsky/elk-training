@@ -23,7 +23,7 @@ Cet exercice a pour objectifs :
 
 * Les DevTools de **Kibana** facilitent l'utilisation d'ElasticSearch.
 
-![kibana-dev-tools](./kibana-dev-tools.png)
+![kibana-dev-tools](https://raw.githubusercontent.com/nosql-bootcamp/elasticsearch-101/master/instructions/kibana-dev-tools.png)
 
 * Votre client *REST* préféré, si vous en avez un, fera sans problème l'affaire :smile:.
 
@@ -75,7 +75,7 @@ curl -XPOST 'http://localhost:9200/heroes/_doc/ironman' -H 'Content-Type: applic
 
 * ou à l'aide de Kibana :
 
-![kibana-insert-doc](./kibana-insert-doc.png)
+![kibana-insert-doc](https://raw.githubusercontent.com/nosql-bootcamp/elasticsearch-101/master/instructions/kibana-insert-doc.png)
 
 * Le verbe, **POST**, indique qu'on insère un document.
 

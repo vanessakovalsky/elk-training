@@ -77,4 +77,4 @@ bin/kibana
 
 ## Suivant
 
-Vous pouvez passer à l'étape suivante : [Opérations CRUD](./exerice-2-crud.md)
+Vous pouvez passer à l'étape suivante : [Opérations CRUD](./exercice-2-crud.md)

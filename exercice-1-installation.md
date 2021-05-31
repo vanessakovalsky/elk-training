@@ -3,12 +3,15 @@
 Cet exercice a pour objectif de :
 * installer elastic et kibana en local sur votre poste (ou dans une VM)
 
+On peut installer la stack en local ou depuis des conteneurs docker
 
-## Pré-requis :  Java
+## Installation locale 
+
+### Pré-requis :  Java
 
 ElasticSearch étant basé sur le langage Java, veillez à disposer de **Java 8** installé sur votre machine. Vous pouvez vérifier l'installation de Java à l'aide de la commande `java -version`.
 
-### ElasticSearch
+#### ElasticSearch
 
 * Téléchargez la dernière version d'ElasticSearch sur [www.elastic.co](https://www.elastic.co/downloads/elasticsearch).
 
@@ -55,7 +58,7 @@ Vous devriez obtenir une réponse qui ressemble à celle là :
 }
 ```
 
-## Kibana
+### Kibana
 
 * Téléchargez la dernière version de Kibana correspondante à votre OS sur [www.elastic.co](https://www.elastic.co/downloads/kibana).
 
@@ -74,6 +77,16 @@ bin/kibana
 ```
 
 * Connectez-vous à votre instance de Kibana locale avec votre browser : [http://localhost:5601](http://localhost:5601)
+
+## Installation avec Docker :
+
+* S'assurer que Docker et Docker-compose sont installé
+* Cloner le dépôt : https://github.com/deviantony/docker-elk 
+* Se rendre dans le dossier et lancer : ```docker-compose up -d```
+* Attendre un peu, puis accéder aux différents outils : 
+* * http://localhost:9200 (id : elastic pass: changeme )
+* * http://localhost:5000 (logastash)
+* * http://localhost:5601 (kibana)
 
 ## Suivant
 

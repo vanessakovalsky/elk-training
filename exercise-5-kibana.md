@@ -35,19 +35,19 @@ filter {
 
 * Rendez-vous sur votre Kibana en local :http://localhost:5601/
 * Aller sur le menu de gauche et cliquer sur Stack management : 
-!()[https://devopssec.fr/images/articles/elk/apache/menu-stack-management.jpg]
+![](https://devopssec.fr/images/articles/elk/apache/menu-stack-management.jpg)
 
 * Nous devons définir l'index à utiliser. Pour cela cliquer sur Index Patterns dans le volet de Gauche, puis sur "Create index pattern"
-!()[https://devopssec.fr/images/articles/elk/apache/create-pattern-index.jpg]
+![](https://devopssec.fr/images/articles/elk/apache/create-pattern-index.jpg)
 
 * Le nom de notre index commence par Apache, le pattern sera donc : apache-* 
-!()[https://devopssec.fr/images/articles/elk/apache/define-pattern-index.jpg]
+![](https://devopssec.fr/images/articles/elk/apache/define-pattern-index.jpg)
 
 * Kibana demande alors comment gérer le filtre temporel (sur quel champs il doit s'appuyer), utiliser le champs @timestamp défini par les filtres de logstash
-!()[https://devopssec.fr/images/articles/elk/apache/timestamp-pattern-index.jpg]
+![](https://devopssec.fr/images/articles/elk/apache/timestamp-pattern-index.jpg)
 
 * Enfin cliquer sur le bouton "Create index pattern" et vous verrez la liste des champs apparaître :
-!()[https://devopssec.fr/images/articles/elk/apache/view-pattern-index.jpg]
+![](https://devopssec.fr/images/articles/elk/apache/view-pattern-index.jpg)
 
 ## Visualisation des données
 

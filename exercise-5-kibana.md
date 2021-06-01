@@ -53,6 +53,15 @@ filter {
 
 ### Rechercher et filtrer dans les données
 
+* Pour accéder à vos données, cliquer sur le menu, puis cliquer sur Discover dans le menu
+![](https://devopssec.fr/images/articles/elk/apache/menu-discover.jpg)
+
+* Vous arriver alors sur une page qui liste vos données :
+![](https://devopssec.fr/images/articles/elk/apache/index-pattern-view.jpg)
+
+* Vous pouvez depuis le champs recherche filtrer les données obtenus 
+![](https://devopssec.fr/images/articles/elk/apache/index-pattern-search.jpg) 
+
 ### Créer un tableau de bord pour ses données
 
 ## Pour aller plus loin : travailler sur de l'OpenData SNCF : 

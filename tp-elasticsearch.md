@@ -23,6 +23,7 @@ curl -s -XPOST http://localhost:9200/_bulk/ --data-binary @big-movies-elastic.js
 }
   ```
 </details>
+
 * Recherche les Films dont le titre contient “Star Wars” et dont le réalisateur (directors) est “George Lucas” (requête booléenne)
 <details>
   <summary>Solution</summary>
@@ -48,6 +49,7 @@ curl -s -XPOST http://localhost:9200/_bulk/ --data-binary @big-movies-elastic.js
     }
   ```
 </details>
+
 * Rechercher les films dans lequel "Harisson Ford" est acteur
 <details>
   <summary>Solution</summary>
@@ -62,6 +64,7 @@ curl -s -XPOST http://localhost:9200/_bulk/ --data-binary @big-movies-elastic.js
 }
   ```
 </details>
+
 * Rechercher les Films dans lesquels “Harrison Ford” a joué et dont le résumé (plot) contient “Jones”.
 <details>
   <summary>Solution</summary>
@@ -76,6 +79,7 @@ curl -s -XPOST http://localhost:9200/_bulk/ --data-binary @big-movies-elastic.js
 }}}
   ```
 </details>
+
 * Rechercher les Films dans lesquels “Harrison Ford” a joué et dont le résumé (plot) contient “Jones” mais sans le mot “Nazis”
 <details>
   <summary>Solution</summary>
@@ -91,6 +95,7 @@ curl -s -XPOST http://localhost:9200/_bulk/ --data-binary @big-movies-elastic.js
 }}}
   ```
 </details>
+
 * Rechercher les Films dont le realisateur (director) est  “James Cameron” et dont le rang devrait être inférieur à 1000 (boolean + range query).
 <details>
   <summary>Solution</summary>
@@ -105,6 +110,7 @@ curl -s -XPOST http://localhost:9200/_bulk/ --data-binary @big-movies-elastic.js
 }}}
   ```
 </details>
+
 * Rechercher les Films  dont le realisateur (director) est “James Cameron” et dont le rang doit être inférieur à 400 (réponse exacte : 2)
 <details>
   <summary>Solution</summary>
@@ -131,6 +137,7 @@ curl -s -XPOST http://localhost:9200/_bulk/ --data-binary @big-movies-elastic.js
 }
   ```
 </details>
+
 * Rechercher les Films dont le realisateur (director) est “Quentin Tarantino” et dont la note (rating) doit être supérieure à 5, sans être un film d’action ni un drame
 <details>
   <summary>Solution</summary>
@@ -178,6 +185,7 @@ curl -s -XPOST http://localhost:9200/_bulk/ --data-binary @big-movies-elastic.js
 }
   ```
 </details>
+
 * Recherche les Films dont le réalisateur (director) est  “J.J. Abrams” et sortis (released) entre 2010 et 2015
 <details>
   <summary>Solution</summary>
@@ -211,6 +219,7 @@ curl -s -XPOST http://localhost:9200/_bulk/ --data-binary @big-movies-elastic.js
     }}}
   ```
 </details>
+
 * Donner la note (rating) moyenne, et le rang moyen des films de George Lucas (cliquer sur (-) à côté de « hits » dans l’interface pour masquer les résultats et consulter les valeurs calculées)
 <details>
   <summary>Solution</summary>
@@ -229,6 +238,7 @@ curl -s -XPOST http://localhost:9200/_bulk/ --data-binary @big-movies-elastic.js
 }}
   ```
 </details>
+
 * Donnez la note (rating) moyenne des films par année. Attention, il y a ici une imbrication d’agrégats (on obtient par exemple 456 films en 2013 avec un rating moyen de 5.97).
 <details>
   <summary>Solution</summary>
@@ -246,6 +256,7 @@ curl -s -XPOST http://localhost:9200/_bulk/ --data-binary @big-movies-elastic.js
     }}}
   ```
 </details>
+
 * Donner la note (rating) minimum, maximum et moyenne des films par année.
 <details>
   <summary>Solution</summary>
@@ -264,6 +275,7 @@ curl -s -XPOST http://localhost:9200/_bulk/ --data-binary @big-movies-elastic.js
     }}}
   ```
 </details>
+
 * Donner le rang (rank) moyen des films par année et trier par ordre décroissant.
 <details>
   <summary>Solution</summary>
@@ -282,6 +294,7 @@ curl -s -XPOST http://localhost:9200/_bulk/ --data-binary @big-movies-elastic.js
 }}}
   ```
 </details>
+
 * Compter le nombre de films par tranche de note (0-1.9, 2-3.9, 4-5.9…). Indice : group_range.
 <details>
   <summary>Solution</summary>
@@ -302,4 +315,4 @@ curl -s -XPOST http://localhost:9200/_bulk/ --data-binary @big-movies-elastic.js
     }}}
   ```
 </details>
-* 
+

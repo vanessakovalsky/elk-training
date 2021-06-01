@@ -101,4 +101,31 @@ filter {
 
 ### Ajouter une sortie à notre pipeline Logstash
 
-* 
+* Il nous reste à rajouter la sortie vers ElasticSearch dans notre fichier apache.conf :
+```
+output {
+    elasticsearch {
+         hosts => "localhost:9200"
+         index => "apache-%{+YYYY.MM.dd}"
+    }
+}
+```
+* On définit alors deux paramètre : 
+  * hosts : permet de définir l'adresse pour accéder au elasticsearch
+  * index : de donner un nom à l'index dans lequel sont envoyé les données
+
+--> Notre pipeline est prêt à être testé
+
+## Tester notre pipeline
+* Appeler la page http://localhost et vérifier que cela a bien crée des entrées dans le fichier de log de apache
+* Rédémarrer le service logstash pour prendre en compte le fichier de configuration que nous avons crées : 
+```
+sudo systemctl restart logstash
+```
+* Une fois le service redémarré, nous pouvons vérifier que l'index a bien été crée via l'API d'ElasticSearch : 
+```
+curl "http://localhost:9200/_cat/indices?v"
+```
+* Vous devriez voir un index donc le nom commence par apache
+* Afficher alors la structure de données de l'index, puis comparer les données présentes dans elasticsearch et celle présente dans le fichier de logs Apache d'origine
+* Que se passe t'il si de nouvels logs sont créés ? (en appelant par exemple de nouveau http://localhost )

@@ -8,14 +8,7 @@ Cet exercice a pour objectif :
 
 ## Pré-requis : 
 * Avoir une machine avec Elasticsearch d'installé ainsi qu'une machine avec Logstash
-* Sur la machine ou Logstash est installé, nous allons installé apache et le lancer 
-* Exemple sous Linux Debian / Ubuntu : 
-```
-sudo apt install apache2
-sudo systemctl start apache2
-sudo usermod -aG adm logstash
-```
-* Vérifier que cela fonctionne en appelant via curl http://localhost , vous devriez avoir une page it's works
+* Sur la machine ou Logstash est installé, récupérer le fichier apache-access.log https://github.com/vanessakovalsky/elk-training/blob/main/apache-access.log et noter l'endroit où est le fichier
 
 ## Définir le pipeline de Logstash
 * Créer un fichier apache.conf 
@@ -39,7 +32,7 @@ input {
     file { path => "/var/log/apache2/access.log" }
 }
 ```
-* Dans ce cas là, on appelle le ficheir de logs d'accès que Apache génère
+* Dans ce cas là, on appelle le ficheir de logs d'accès de Apache 
 * A l'aide de la documentation, https://www.elastic.co/guide/en/logstash/current/plugins-inputs-file.html, on voit qu'on peut donner d'autre paramètres à notre entrée :
 ```
 input {
@@ -117,7 +110,6 @@ output {
 --> Notre pipeline est prêt à être testé
 
 ## Tester notre pipeline
-* Appeler la page http://localhost et vérifier que cela a bien crée des entrées dans le fichier de log de apache
 * Rédémarrer le service logstash pour prendre en compte le fichier de configuration que nous avons crées : 
 ```
 sudo systemctl restart logstash
@@ -128,4 +120,4 @@ curl "http://localhost:9200/_cat/indices?v"
 ```
 * Vous devriez voir un index donc le nom commence par apache
 * Afficher alors la structure de données de l'index, puis comparer les données présentes dans elasticsearch et celle présente dans le fichier de logs Apache d'origine
-* Que se passe t'il si de nouvels logs sont créés ? (en appelant par exemple de nouveau http://localhost )
+* Que se passe t'il si de nouvels logs sont créés ? (en dupliquant 5 fois la dernière ligne par exemple )

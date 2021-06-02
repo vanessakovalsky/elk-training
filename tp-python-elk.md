@@ -40,7 +40,7 @@ def hello_world():
 ```
 * Lancer l'application Python et vérifier si des logs sont bien créé dans le chemin que vous avez défini
 
-## Créer un Pipeline Logstash
+## Créer un Pipeline Logstash
 
 * Sur votre environnement contenant Logstash, créer un nouveau pipeline, celui-ci contiendra les élements suivant : 
   * en entrée (input) : l'utilisation du plugin beats sur le port 5044 

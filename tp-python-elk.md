@@ -9,36 +9,32 @@ Cet exercice a pour objectifs :
 ## Mise en place de l'application Python
 
 * Nous allons instancier un conteneur avec Python avec l'image officielle
-* Dans ce conteneur (ou dans un DockerFile qui s'appuie sur cette image au choix), installer avec pip flask et python-logstash-async
-* Le module Python-logstash-async permet de stocker les données de manière temporaires avant de les envoyer logstash. 
-* Une fois les modules installé crée une application python contenant le code suivant en adaptant les lignes LOGSTASH_HOST et LOGSTAH_DB_PATH à votre configuration pour atteindre logstash et à votre chemin pour stocker les données 
+* Dans ce conteneur (ou dans un DockerFile qui s'appuie sur cette image au choix), installer avec pip flask et python-logstash
+* Le module Python-logstash permet d'envoyer les logs à logstash. 
+* Une fois les modules installé crée une application python contenant le code suivant en adaptant les lignes HOST à votre configuration pour atteindre logstash  
 ```python
 from flask import Flask
 app = Flask(__name__)
 
-from logstash_async.handler import AsynchronousLogstashHandler
-from logstash_async.formatter import FlaskLogstashFormatter
+import logging
+import logstash
+import sys
 
-LOGSTASH_HOST = "192.168.200.19"
-LOGSTASH_DB_PATH = "/home/vagrant/app-data"
-LOGSTASH_TRANSPORT = "logstash_async.transport.BeatsTransport"
-LOGSTASH_PORT = 5044
+HOST = 'logstash'
 
-logstash_handler = AsynchronousLogstashHandler(
-    LOGSTASH_HOST,
-    LOGSTASH_PORT,
-    database_path=LOGSTASH_DB_PATH,
-    transport=LOGSTASH_TRANSPORT,
-)
-logstash_handler.formatter = FlaskLogstashFormatter(metadata={"beat": "myapp"})
-app.logger.addHandler(logstash_handler)
+app.test_logger = logging.getLogger('python-logstash-logger')
+app.test_logger.setLevel(logging.INFO)
+app.test_logger.addHandler(logstash.LogstashHandler(HOST, 5959, version=1))
+
 
 @app.route('/')
-def hello_world():  
-    app.logger.info("Hello there")
+def hello_world():
+    app.test_logger.info("Hello there")
     return 'Hello, World!'
+
+app.run(host='0.0.0.0', port=5555)
 ```
-* Lancer l'application Python et vérifier si des logs sont bien créé dans le chemin que vous avez défini
+* Lancer l'application Python et vérifier dans le navigateur si votre application s'affiche bien
 
 ## Créer un Pipeline Logstash
 

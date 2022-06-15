@@ -114,6 +114,28 @@ output {
 --> Notre pipeline est prêt à être testé
 
 ## Tester notre pipeline
+
+* On va commencer par modifier le fichier de configuration pour désactiver la connexion, pour cela ouvrir le fichier qui est dans le dossier elasticsearch/config et qui s'appelle elasticsearch.yml et replacer son contenu par le contenu suivant :
+```
+---
+## Default Elasticsearch configuration from Elasticsearch base image.
+## https://github.com/elastic/elasticsearch/blob/master/distribution/docker/src/docker/config/elasticsearch.yml
+#
+cluster.name: "docker-cluster"
+network.host: 0.0.0.0
+
+## X-Pack settings
+## see https://www.elastic.co/guide/en/elasticsearch/reference/current/security-settings.html
+#
+xpack.license.self_generated.type: basic
+xpack.security.enabled: false
+
+xpack.security.authc:
+  anonymous:
+    username: anonymous_user 
+    roles: role1
+    authz_exception: true
+```
 * Copier le fichier de log utilisé dans le conteneur : 
 ```
 docker cp ./apache-access.log docker-elk_logstash_1:/usr/share/logstash/apache-access.log
@@ -122,17 +144,16 @@ docker cp ./apache-access.log docker-elk_logstash_1:/usr/share/logstash/apache-a
 ```
 docker cp ./apache.conf docker-elk_logstash_1:/usr/share/logstash/apache.conf
 ```
-* Rédémarrer le service logstash pour prendre en compte le fichier de configuration que nous avons crées : 
+* Rédémarrer les services pour prendre en compte le fichier de configuration que nous avons crées : 
 ```
- docker-compose restart logstash
+ docker-compose restart 
 ```
-* Une fois le service redémarré, nous pouvons vérifier que l'index a bien été crée via l'API d'ElasticSearch : 
+* Une fois le service redémarré, nous pouvons vérifier que l'index a bien été crée via l'API d'ElasticSearch ou via le devtools de Kibana : 
 ```
 curl "http://localhost:9200/_cat/indices?v"
 ```
 * Vous devriez voir un index donc le nom commence par apache
 * Afficher alors la structure de données de l'index, puis comparer les données présentes dans elasticsearch et celle présente dans le fichier de logs Apache d'origine
-* Que se passe t'il si de nouvels logs sont créés ? (en dupliquant 5 fois la dernière ligne par exemple )
 
 ## Pour aller plus loin : récupérer et traiter des données depuis l'API de Twitter 
 

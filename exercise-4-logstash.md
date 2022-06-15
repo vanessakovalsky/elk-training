@@ -29,7 +29,7 @@ output {}
 * Définir une section input qui permet de déclarer le point d'entrée de données que l'on souhaite que logstash utilise. 
 ```
 input {
-    file { path => "/var/log/apache-access.log" }
+    file { path => "/usr/share/logstash/apache-access.log" }
 }
 ```
 * Dans ce cas là, on appelle le ficheir de logs d'accès de Apache 

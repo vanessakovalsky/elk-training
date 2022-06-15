@@ -29,7 +29,7 @@ output {}
 * Définir une section input qui permet de déclarer le point d'entrée de données que l'on souhaite que logstash utilise. 
 ```
 input {
-    file { path => "/var/log/apache2/access.log" }
+    file { path => "/var/log/apache-access.log" }
 }
 ```
 * Dans ce cas là, on appelle le ficheir de logs d'accès de Apache 
@@ -37,7 +37,7 @@ input {
 ```
 input {
     file { 
-        path => "/var/log/apache2/access.log"
+        path => "/var/log/apache-access.log"
         start_position => "beginning"
         sincedb_path => "/dev/null"
     }
@@ -82,7 +82,7 @@ duration: 0.043
 * Ajoutons ce pattern à notre fichier apache.conf
 ```
 input {
-    file { path => "/var/log/apache2/access.log" }
+    file { path => "/var/log/apache-access.log" }
 }
 
 filter {
@@ -110,10 +110,24 @@ output {
 --> Notre pipeline est prêt à être testé
 
 ## Tester notre pipeline
+* Copier le fichier de log utilisé dans le conteneur : 
+```
+docker cp ./apache-access.log docker-elk_logstash_1:/var/log/apache-access.log
+```
+* Copier le fichier de configuration de logstash :
+```
+docker cp ./apache.conf docker-elk_logstash_1:/usr/share/logstash/apache.conf
+```
+* Se connecter au conteneur
+```
+docker exec -it docker-elk_logstash_1 bash
+
+```
 * Rédémarrer le service logstash pour prendre en compte le fichier de configuration que nous avons crées : 
 ```
 sudo systemctl restart logstash
 ```
+* Sortir du conteneur
 * Une fois le service redémarré, nous pouvons vérifier que l'index a bien été crée via l'API d'ElasticSearch : 
 ```
 curl "http://localhost:9200/_cat/indices?v"

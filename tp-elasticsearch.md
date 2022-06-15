@@ -4,7 +4,7 @@
 * Sur une machine faisant fonctionner elasticsearch, importer le fichier : http://b3d.bdpedia.fr/files/big-movies-elastic.json 
 * Importer les données depuis ce fichiers dans elasticsearch : 
 ```
-curl -s -XPOST http://localhost:9200/_bulk/ --data-binary @big-movies-elastic.json
+curl -s -XPOST http://localhost:9200/_bulk/ -H "Content-Type: application/json" --data-binary @big-movies-elastic.json
 ```
 * A l'aide de l'API, visualiser la structure de données 
 

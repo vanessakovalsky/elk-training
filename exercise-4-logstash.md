@@ -8,7 +8,7 @@ Cet exercice a pour objectif :
 
 ## Pré-requis : 
 * Avoir une machine avec Elasticsearch d'installé ainsi qu'une machine avec Logstash
-* Sur la machine ou Logstash est installé, récupérer le fichier apache-access.log https://github.com/vanessakovalsky/elk-training/blob/main/apache-access.log et noter l'endroit où est le fichier
+* Sur la machine ou Logstash est installé, récupérer le fichier apache-access.log https://raw.githubusercontent.com/vanessakovalsky/elk-training/main/apache-access.log  et noter l'endroit où est le fichier
 
 ## Définir le pipeline de Logstash
 * Créer un fichier apache.conf 

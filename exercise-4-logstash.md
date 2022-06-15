@@ -100,6 +100,8 @@ output {
     elasticsearch {
          hosts => "localhost:9200"
          index => "apache-%{+YYYY.MM.dd}"
+         user => "elastic"
+         password => "changeme"
     }
 }
 ```
@@ -118,16 +120,10 @@ docker cp ./apache-access.log docker-elk_logstash_1:/var/log/apache-access.log
 ```
 docker cp ./apache.conf docker-elk_logstash_1:/usr/share/logstash/apache.conf
 ```
-* Se connecter au conteneur
-```
-docker exec -it docker-elk_logstash_1 bash
-
-```
 * Rédémarrer le service logstash pour prendre en compte le fichier de configuration que nous avons crées : 
 ```
-sudo systemctl restart logstash
+ docker restart docker-elk_logstash_1
 ```
-* Sortir du conteneur
 * Une fois le service redémarré, nous pouvons vérifier que l'index a bien été crée via l'API d'ElasticSearch : 
 ```
 curl "http://localhost:9200/_cat/indices?v"

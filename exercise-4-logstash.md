@@ -100,12 +100,16 @@ output {
     elasticsearch {
          hosts => "localhost:9200"
          index => "apache-%{+YYYY.MM.dd}"
+         user => "logstash_internal"
+		 password => "${LOGSTASH_INTERNAL_PASSWORD}"
     }
 }
 ```
 * On définit alors deux paramètre : 
   * hosts : permet de définir l'adresse pour accéder au elasticsearch
   * index : de donner un nom à l'index dans lequel sont envoyé les données
+  * user : l'utilisateur à utiliser pour se connecter
+  * password : le mot de passe associé
 
 --> Notre pipeline est prêt à être testé
 

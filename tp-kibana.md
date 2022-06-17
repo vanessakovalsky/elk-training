@@ -4,7 +4,7 @@
 
 * POur commencer nous allons ajouter l'index elasticsearch dans les données de Kibana
 * Utiliser le menu pour aller Dans Stack management
-* Puis cliquer sur Index Pattern, et suivre les étapes
+* Puis cliquer sur Data views dans le menu, et suivre les étapes
 * Pour le nom d'index utiliser ```movies``` (ou celui de l'index qui ;contient vos données) et le champ fields.release_date pour le champs de temps
 
 ![](https://user.oc-static.com/upload/2017/09/27/15065439987946_kibana-home.png)

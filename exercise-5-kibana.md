@@ -38,9 +38,9 @@ filter {
 
 ![](https://devopssec.fr/images/articles/elk/apache/menu-stack-management.jpg)
 
-* Nous devons définir l'index à utiliser. Pour cela cliquer sur Index Patterns dans le volet de Gauche, puis sur "Create index pattern"
+* Nous devons définir l'index à utiliser. Pour cela cliquer sur Data views dans le volet de Gauche
 
-![](https://devopssec.fr/images/articles/elk/apache/create-pattern-index.jpg)
+![](https://www.elastic.co/guide/en/kibana/current/management/index-patterns/images/create-data-view.png)
 
 * Le nom de notre index commence par Apache, le pattern sera donc : apache-* 
 

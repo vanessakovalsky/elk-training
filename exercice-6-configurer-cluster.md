@@ -4,7 +4,7 @@
 
 * Pour commencer on va ajouter deux noeuds à notre cluster en ajoutant dans le fichier docker-compose les lignes suivantes :
 ```
-`  elasticsearch2:
+elasticsearch2:
     build:
       context: elasticsearch/
       args:
@@ -13,21 +13,22 @@
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro,z
       - elasticsearch:/usr/share/elasticsearch/data:z
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "9201:9200"
+      - "9301:9300"
     environment:
-      - ES_JAVA_OPTS: -Xms512m -Xmx512m
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       # Bootstrap password.
       # Used to initialize the keystore during the initial startup of
       # Elasticsearch. Ignored on subsequent runs.
-      - ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-}
+      - "ELASTIC_PASSWORD=${ELASTIC_PASSWORD:-}"
       - node.name=es02
       - cluster.name=es-docker-cluster
       - discovery.seed_hosts=es01,es03
       - cluster.initial_master_nodes=es01,es02,es03
+      - node.roles=data,ingest
     networks:
       - elk
-    elasticsearch3:
+  elasticsearch3:
     build:
       context: elasticsearch/
       args:
@@ -36,26 +37,32 @@
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro,z
       - elasticsearch:/usr/share/elasticsearch/data:z
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "9202:9200"
+      - "9302:9300"
     environment:
-      - ES_JAVA_OPTS: -Xms512m -Xmx512m
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       # Bootstrap password.
       # Used to initialize the keystore during the initial startup of
       # Elasticsearch. Ignored on subsequent runs.
-      - ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-}
+      - "ELASTIC_PASSWORD=${ELASTIC_PASSWORD:-}"
       - node.name=es03
       - cluster.name=es-docker-cluster
       - discovery.seed_hosts=es01,es02
       - cluster.initial_master_nodes=es01,es02,es03 
+    networks:
       - elk
   ```
-  * Une fois les deux services ajouter, remplacer dans les variables d'environnement de notre service elasticsearch la ligne `discovery.type: single-node` par :
+  * Une fois les deux services ajouter, remplacer les variables d'environnement de notre service elasticsearch par :
   ```
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      # Bootstrap password.
+      # Used to initialize the keystore during the initial startup of
+      # Elasticsearch. Ignored on subsequent runs.
+      - "ELASTIC_PASSWORD= ${ELASTIC_PASSWORD:-}"
       - node.name=es01
       - cluster.name=es-docker-cluster
       - discovery.seed_hosts=es02,es03
-      - cluster.initial_master_nodes=es01,es02,es03    
+      - cluster.initial_master_nodes=es01,es02,es03     
  
   ```
   * Redémarrer votre docker-compose

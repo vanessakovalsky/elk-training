@@ -38,6 +38,7 @@ services:
     #   context: elasticsearch/
     #   args:
     #     ELASTIC_VERSION: ${ELASTIC_VERSION}
+    container_name: es-container
     image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}    
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro,z
@@ -53,7 +54,7 @@ services:
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD:-}
       - node.name=es01
       - cluster.name=es-docker-cluster
-      - discovery.seed_hosts=es02,es03
+      - discovery.seed_hosts=elasticsearch2,elasticsearch3
       - cluster.initial_master_nodes=es01,es02,es03    
 
     networks:
@@ -79,7 +80,7 @@ services:
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD:-}
       - node.name=es02
       - cluster.name=es-docker-cluster
-      - discovery.seed_hosts=es01,es03
+      - discovery.seed_hosts=elasticsearch,elasticsearch3
       - cluster.initial_master_nodes=es01,es02,es03
     networks:
       - elk
@@ -103,7 +104,7 @@ services:
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD:-}
       - node.name=es03
       - cluster.name=es-docker-cluster
-      - discovery.seed_hosts=es01,es02
+      - discovery.seed_hosts=elasticsearch,elasticsearch2
       - cluster.initial_master_nodes=es01,es02,es03 
     networks:
       - elk
@@ -163,7 +164,7 @@ volumes:
 ## Default Elasticsearch configuration from Elasticsearch base image.
 ## https://github.com/elastic/elasticsearch/blob/main/distribution/docker/src/docker/config/elasticsearch.yml
 #
-cluster.name: "docker-cluster"
+cluster.name: "es-docker-cluster"
 network.host: 0.0.0.0
 
 ## X-Pack settings

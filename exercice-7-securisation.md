@@ -134,3 +134,5 @@ sudo htpasswd -c /etc/nginx/htpasswd.kibana.users kibanauser01
 ## Pour aller plus loin :
 
 * Il est possible de mettre de l'authentification LDAP au dessus de la distribution OpenSource d'Elasticsearch à l'aide de ce plugin : https://github.com/skysbsb/elk-opendistro-plugins-ldap 
+
+* Il est également possible de mettre un Kong API devant le Elastic, voir le fichier docker-compose.yml du dossier kong dans le dépôt

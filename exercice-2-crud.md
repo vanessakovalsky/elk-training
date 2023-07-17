@@ -152,7 +152,7 @@ curl -XGET 'http://localhost:9200/heroes/_doc/ironman'
 * Il est possible d'effectuer des mises à jour partielles en utilisant l'API `_update`.
 
 ```bash
-curl -XPOST 'http://localhost:9200/heroes/_doc/ironman/_update' -H 'Content-Type: application/json' -d '{
+curl -XPOST 'http://localhost:9200/heroes/_update/ironman' -H 'Content-Type: application/json' -d '{
 	"doc" : {
 		"firstName" : "Tomy"
 	}

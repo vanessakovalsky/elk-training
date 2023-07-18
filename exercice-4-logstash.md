@@ -155,6 +155,7 @@ curl "http://localhost:9200/_cat/indices?v"
 * Vous devriez voir un index donc le nom commence par apache
 * Afficher alors la structure de données de l'index, puis comparer les données présentes dans elasticsearch et celle présente dans le fichier de logs Apache d'origine
 
-## Pour aller plus loin : récupérer et traiter des données depuis l'API de Twitter 
+## Pour aller plus loin : 
 
-* https://github.com/daniellavoie/formation-elk/tree/master/exercice-twitter
+* [Envoyer ses logs docker vers elastic search](https://logz.io/blog/docker-logging/)
+* [récupérer et traiter des données depuis l'API de Twitter ](https://github.com/daniellavoie/formation-elk/tree/master/exercice-twitter)

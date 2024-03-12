@@ -24,4 +24,4 @@
 ```
 * Une fois votre docker-compose relancer, vous aurez alors accès à l'interface sur localhost:5000 
 * Explorer l'interface graphique pour découvrir les possibilités
-* Si besoin, la documentation (en anglais) est ici : http://docs.elastichq.org/i 
+* Si besoin, la documentation (en anglais) est ici : http://docs.elastichq.org/

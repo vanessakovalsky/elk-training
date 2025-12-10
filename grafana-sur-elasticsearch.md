@@ -12,6 +12,7 @@ Google Play Store Analytics
 ## Structure recommandée en 4 lignes comme dans Kibana.
 
 🔹 Ligne 1 — KPIs (4 Stat Panels)
+
 Viz	Type	Métrique	Détails
 1. Total Apps	Stat	Metric → Count	Titre : Total Apps
 2. Note Moyenne	Stat	Metric → Average(rating)	Format : 2 décimales · Titre : Average Rating
@@ -32,17 +33,21 @@ Format en pourcentage
 
 🔹 Ligne 2 — Analyses par catégorie (2 Graphs)
 Viz	Type Grafana	X	Y	Options
+
 5. Top 15 Catégories	Bar chart (Vertical)	Terms(category, size=15)	Count	Tri ↓ par valeur
 6. Meilleures Notes par Catégorie	Bar chart (Horizontal)	Terms(category, size=10)	Average(rating)	Tri ↓ Average(rating), mode horizontal, palette gradient recommandée
+7. 
 🔹 Ligne 3 — Types & Distributions (3 Charts)
 Viz	Type Grafana	Breakdown	Metric	Options
-7. Free vs Paid	Pie ou Donut	Terms(type)	Count	Titre : Free vs Paid Apps
-8. Distribution des Notes	Histogram (Vertical)	Histogram(rating)	Count	Bucket size = 0.5
-9. Content Rating	Pie chart	Terms(content_rating)	Count	Titre : Apps by Content Rating
+
+9. Free vs Paid	Pie ou Donut	Terms(type)	Count	Titre : Free vs Paid Apps
+10. Distribution des Notes	Histogram (Vertical)	Histogram(rating)	Count	Bucket size = 0.5
+11. Content Rating	Pie chart	Terms(content_rating)	Count	Titre : Apps by Content Rating
 🔹 Ligne 4 — Détails & Analyse avancée (2 visualisations)
 Viz	Type Grafana	Dimensions	Métriques
-10. Top 20 Apps	Table	Terms(app_name.keyword, top=20)	Avg(rating) · Sum(reviews) · Max(installs_numeric)
-11. Taille vs Popularité	Scatter Plot	X = size_mb (bucket 50MB)	Y = Avg(reviews)
+
+13. Top 20 Apps	Table	Terms(app_name.keyword, top=20)	Avg(rating) · Sum(reviews) · Max(installs_numeric)
+14. Taille vs Popularité	Scatter Plot	X = size_mb (bucket 50MB)	Y = Avg(reviews)
 
 Pour le Scatter Plot, penser à mode Points + bucket size manuel si nécessaire.
 

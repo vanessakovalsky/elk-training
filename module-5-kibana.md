@@ -25,7 +25,7 @@ Maîtriser l'interface Discover pour explorer et filtrer les données.
 2. Cliquez sur **Create data view**
 3. Name : `Play Store Apps`
 4. Index pattern : `playstore`
-5. Pas de champ de temps (laisser vide)
+5. Champs temps choisir : I don't wan't to use a date filter
 6. Cliquez sur **Save data view**
 
 **Étape 2 : Explorer dans Discover (15 min)**
